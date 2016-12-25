@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJax Test</title>
+</head>
+<body>
+
+<h1>The XMLHttpRequest Object</h1>
+
+<p id="demo">Let AJAX change this text.</p>
+
+<button type="button" onclick="loadDoc()">Change Content</button>
+
+<script>
+    function loadDoc() {
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("demo").innerHTML = this.responseText;
+                var str = this.responseText;
+                alert(str);
+                var obj =JSON.parse(str);
+                alert(obj.url);
+            }
+        };
+        xhttp.open("GET", "https://httpbin.org/get", true);
+        xhttp.send();
+    }
+</script>
+
+</body>
+</html>
